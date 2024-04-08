@@ -1,0 +1,7 @@
+https://dunhack.me {
+    @sectool {
+        header_regexp User-Agent ^w3af.sourceforge.net|dirbuster|nikto|SF|sqlmap|fimap|nessus|whatweb|Openvas|jbrofuzz|libwhisker|webshag
+    }
+    respond @sectool 403
+    reverse_proxy http://webapp:3000
+}
