@@ -14,6 +14,7 @@ services:
       - '5432:5432' #meant for script to add/update challs
 
   caddy:
+    image: caddy:latest
     restart: always
     ports:
       - "80:80"
@@ -21,7 +22,7 @@ services:
     links:
       - "webapp"
     volumes:
-      - ./docker-misc/caddy/Caddyfile
+      - ./docker-misc/caddy/Caddyfile:/etc/caddy/Caddyfile
 
 
 #    nginx:
