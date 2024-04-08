@@ -12,16 +12,29 @@ services:
         - RUNNER_DB=runner_db #db for runner
     ports:
       - '5432:5432' #meant for script to add/update challs
-  nginx:
-    container_name: nginx
-    hostname: nginx
-    build: ./docker-misc/nginx/
+
+  caddy:
+    image: caddy:latest
     restart: always
     ports:
       - "80:80"
       - "443:443"
     links:
       - "webapp"
+    volumes:
+      - ./docker-misc/caddy/Caddyfile:/etc/caddy/Caddyfile
+
+
+#    nginx:
+#      container_name: nginx
+#      hostname: nginx
+#      build: ./docker-misc/nginx/
+#      restart: always
+#      ports:
+#        - "80:80"
+#        - "443:443"
+#      links:
+#        - "webapp"
   webapp:
     build:
       context: ./
